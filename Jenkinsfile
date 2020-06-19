@@ -147,5 +147,14 @@ pipeline {
       }
     }
     
+    stage('Deploy to production namespace') {
+      steps {
+        checkout scm
+        container('kubectl') {
+          sh "kubectl -n production apply -f ${env.APP_NAME}.yml"
+        }
+      }
+    }
+    
   }
 }
