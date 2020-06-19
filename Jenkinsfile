@@ -149,9 +149,7 @@ pipeline {
     
     stage('Deploy to production namespace') {
       steps {
-        container('kubectl') {
-          sh "kubectl -n production apply -f ${env.APP_NAME}.yml"
-        }
+        build job: "k8s-deploy-production"
       }
     }
     
